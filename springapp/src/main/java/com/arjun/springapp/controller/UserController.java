@@ -10,29 +10,30 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.arjun.springapp.Entity.user;
 import com.arjun.springapp.service.userService;
 @RestController
-// @RequestMapping("/api")
+@RequestMapping("/users")
 public class UserController 
 {
     @Autowired
     userService obj;
-    @PostMapping("/POST/users")
+    @PostMapping
     public ResponseEntity<user> Addnewuser(@RequestBody user a)
     {
         return new ResponseEntity<>(obj.AddNewuser(a),HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/GET/users")
+    @GetMapping
     public ResponseEntity<List<user>> GetAlluser()
     {
         return new ResponseEntity<>(obj.GiveAlluser(),HttpStatus.OK);
     }
 
-    @GetMapping("/GET/users/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<user> GetSingleuser(@PathVariable int id)
     {
         Optional<user> user = obj.GiveSingleuser(id);
@@ -46,7 +47,7 @@ public class UserController
         }
     }
 
-    @PutMapping("/PUT/users/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<user> UpdateSingleuser(@PathVariable int id,@RequestBody user a)
     {
         Optional<user> user = obj.GiveSingleuser(id);
@@ -60,7 +61,7 @@ public class UserController
         }
     }
 
-    @DeleteMapping("/DELETE/users/{id}")
+    @DeleteMapping("{id}")
     public ResponseEntity<user> DeleteSingleuser(@PathVariable int id)
     {
         Optional<user> user = obj.GiveSingleuser(id);

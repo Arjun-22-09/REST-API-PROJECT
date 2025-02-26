@@ -8,6 +8,7 @@ public class Organizer
 {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int id;
     public String name;
     public int getId() {

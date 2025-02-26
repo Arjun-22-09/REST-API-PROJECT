@@ -3,27 +3,27 @@ package com.arjun.springapp.Entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "event", uniqueConstraints = { @UniqueConstraint(columnNames = "event_name") })
+@Table(name = "event")
 public class event {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "event_id")
-    private Long id;
+    private int id;
 
-    @Column(name = "event_name", nullable = false, unique = true)
+    @Column(name = "event_name")
     private String eventName;
 
-    @Column(name = "location", nullable = false)
+    @Column(name = "location")
     private String location;
 
-    @Column(name = "event_date", nullable = false)
+    @Column(name = "event_date")
     private String date;
 
-    @Column(name = "event_time", nullable = false)
+    @Column(name = "event_time")
     private String time;
 
-    @Column(name = "available_seats", nullable = false)
+    @Column(name = "available_seats")
     private int availableSeats;
 
     // Default Constructor
@@ -31,7 +31,7 @@ public class event {
     }
 
     // Parameterized Constructor
-    public event(Long id, String eventName, String location, String date, String time, int availableSeats, Organizer organizer) {
+    public event(int id, String eventName, String location, String date, String time, int availableSeats) {
         this.id = id;
         this.eventName = eventName;
         this.location = location;
@@ -41,11 +41,11 @@ public class event {
     }
 
     // Getters and Setters
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -64,6 +64,7 @@ public class event {
     public void setLocation(String location) {
         this.location = location;
     }
+
     public String getDate() {
         return date;
     }
@@ -87,6 +88,5 @@ public class event {
     public void setAvailableSeats(int availableSeats) {
         this.availableSeats = availableSeats;
     }
-    
 }
-
+    

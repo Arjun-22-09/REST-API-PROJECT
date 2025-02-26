@@ -24,7 +24,7 @@ public class Eventcontroller {
 
     // Get event by ID
     @GetMapping("/{id}")
-    public ResponseEntity<event> getEventById(@PathVariable Long id) {
+    public ResponseEntity<event> getEventById(@PathVariable int id) {
         Optional<event> event = eventService.getEventById(id);
         return event.map(ResponseEntity::ok)
                     .orElseGet(() -> ResponseEntity.notFound().build());
@@ -39,18 +39,15 @@ public class Eventcontroller {
 
     // Update an existing event
     @PutMapping("/{id}")
-    public ResponseEntity<event> updateEvent(@PathVariable Long id, @RequestBody event event) {
-        try {
+    public ResponseEntity<event> updateEvent(@PathVariable int id, @RequestBody event event) {
+        
             event updatedEvent = eventService.updateEvent(id, event);
             return ResponseEntity.ok(updatedEvent);
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
     }
 
     // Delete an event
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteEvent(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteEvent(@PathVariable int id) {
         eventService.deleteEvent(id);
         return ResponseEntity.noContent().build();
     }
