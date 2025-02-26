@@ -1,11 +1,11 @@
 package com.arjun.springapp.Entity;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 @Entity
 @Table(name="user" , uniqueConstraints = {@UniqueConstraint(columnNames = "user_email")})
 
 public class user {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
     private int id;
     @Column(name = "user_name")

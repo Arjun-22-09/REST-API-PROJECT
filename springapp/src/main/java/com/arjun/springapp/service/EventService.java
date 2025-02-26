@@ -20,7 +20,7 @@ public class EventService {
     }
 
     // Get a single event by ID
-    public Optional<event> getEventById(Long id) {
+    public Optional<event> getEventById(int id) {
         return eventRepository.findById(id);
     }
 
@@ -30,19 +30,18 @@ public class EventService {
     }
 
     // Update an existing event
-    public event updateEvent(Long id, event updatedEvent) {
+    public event updateEvent(int id, event updatedEvent) {
         return eventRepository.findById(id).map(event -> {
-            event.setEventName(updatedEvent.getEventName());
-            event.setLocation(updatedEvent.getLocation());
-            event.setDate(updatedEvent.getDate());
-            event.setTime(updatedEvent.getTime());
-            event.setAvailableSeats(updatedEvent.getAvailableSeats());
+            if(updatedEvent.getEventName() != null)event.setEventName(updatedEvent.getEventName());
+            if(updatedEvent.getLocation() != null)event.setLocation(updatedEvent.getLocation());
+            if(updatedEvent.getDate() != null)event.setDate(updatedEvent.getDate());
+            if(updatedEvent.getTime() != null)event.setTime(updatedEvent.getTime());
             return eventRepository.save(event);
         }).orElseThrow(() -> new RuntimeException("Event not found with id: " + id));
     }
 
     // Delete an event
-    public void deleteEvent(Long id) {
+    public void deleteEvent(int id) {
         eventRepository.deleteById(id);
     }
 }
