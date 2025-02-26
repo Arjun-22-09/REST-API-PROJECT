@@ -15,7 +15,6 @@ public class OrganizerController {
     @Autowired
     private OrganizerService organizerService;
 
-    // Get all organizers
     @GetMapping
     public List<Organizer> getAllOrganizers() {
         return organizerService.getAllOrganizers();
